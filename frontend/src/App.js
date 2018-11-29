@@ -12,8 +12,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const pusher = new Pusher('<your app key>', {
-      cluster: '<your app cluster>',
+    const pusher = new Pusher('903ccf96b48b053043df', {
+      cluster: 'us2',
       encrypted: true,
     });
 

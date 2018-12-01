@@ -12,9 +12,6 @@ const styles = theme => ({
   primaryLight: {
     backgroundColor: theme.palette.primary.light
   },
-  root: {
-    flexGrow: 1,
-  },
   grow: {
     flexGrow: 1,
   },

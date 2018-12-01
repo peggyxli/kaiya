@@ -1,3 +1,4 @@
 import NavBar from './NavBar';
+import ChatPanel from './ChatPanel';
 
-export default NavBar;
+export { NavBar, ChatPanel };

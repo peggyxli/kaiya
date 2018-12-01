@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ChatPanel } from '../components'
 import logo from '../logo.svg';
 import '../App.css';
 import './chat-page.css';
@@ -26,8 +27,7 @@ class ChatPage extends Component {
             </a>
           </header>
         </div>
-        <div className = "message-box">
-        </div>
+        < ChatPanel />
       </div>
     );
   }

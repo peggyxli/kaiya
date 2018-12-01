@@ -1,0 +1,12 @@
+.message-box {
+  background-color: #fff;
+  width: 66%;
+  height: 100%;
+}
+
+.ChatPage {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}

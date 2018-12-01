@@ -28,7 +28,7 @@ function NavBar(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <AppBar position="fixed" className={classes.primaryLight}>
+      <AppBar position="static" className={classes.primaryLight}>
         <Toolbar>
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
             <AdbIcon />

@@ -1,17 +1,32 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { Chat } from './views';
 import NavBar from './components';
 import './App.css';
 
 class App extends Component {
   render() {
+    const theme = createMuiTheme({
+      palette: {
+        primary: {
+          light: '#fff',
+          main: '#eee',
+        },
+        secondary: {
+          main: '#8e52c1',
+        },
+      },
+    });
+
     return (
       <Router>
-        <div>
+        <MuiThemeProvider theme={theme}>
           <NavBar/>
-          <Route exact path="/" component={Chat} />
-        </div>
+          <div className="container">
+            <Route exact path="/" component={Chat} />
+          </div>
+        </MuiThemeProvider>
       </Router>
     );
   }

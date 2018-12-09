@@ -7,6 +7,7 @@ import MicIcon from '@material-ui/icons/Mic';
 import { withStyles, createStyles } from '@material-ui/core/styles';
 import './ChatPanel.css';
 
+
 const styles = theme => createStyles({
   root: {
     backgroundColor: theme.palette.primary.light,
@@ -96,6 +97,7 @@ class ChatPanel extends Component {
               <MicIcon />
             </Fab>
           </Tooltip>
+
           <form onSubmit={this.handleSubmit}>
             <input
               value={this.state.userMessage}

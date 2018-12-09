@@ -40,7 +40,7 @@ client
     console.error('ERROR:', err);
   });
 
-  var rec = require('node-record-lpcm16')
+var rec = require('node-record-lpcm16')
 var request = require('request')
  
 var witToken = process.env.WIT_TOKEN; // get one from wit.ai!

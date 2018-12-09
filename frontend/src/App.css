@@ -5,7 +5,7 @@
 .App {
   text-align: center;
   width: 33%;
-  margin-left: 1px;
+  margin-right: 8px;
 }
 
 .App-logo {
@@ -13,6 +13,9 @@
   height: 40vmin;
 }
 
+.pet {
+  max-width: 100%;
+}
 .App-header {
   background-color: #282c34;
   height: 100%;
@@ -22,6 +25,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  padding: 20px;
 }
 
 .App-link {

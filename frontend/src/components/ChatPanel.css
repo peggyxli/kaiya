@@ -23,6 +23,7 @@ html, body {
   overflow-y: scroll;
   flex-flow: column;
   flex: 1;
+  justify-content: flex-end;
 }
 
 .message-box {
@@ -41,6 +42,8 @@ html, body {
   font-size: 20px;
   margin-bottom: 20px;
   width: 100%;
+  display: flex;
+  justify-content: flex-end;
   min-height: auto;
 }
 
@@ -59,8 +62,4 @@ html, body {
   background-color: #D2E3FC;
   color: #174EA6;
   border-radius: 20px;
-}
-
-.human > .chat-content {
-  float: right;
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ChatPanel } from '../components'
 import logo from '../logo.svg';
+import codee from '../codee.png';
 import '../App.css';
 import './chat-page.css';
 
@@ -13,18 +14,7 @@ class ChatPage extends Component {
       <div className="ChatPage">
         <div className="App">
           <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
+            <img src={codee} className="pet" alt="logo" />
           </header>
         </div>
         < ChatPanel />

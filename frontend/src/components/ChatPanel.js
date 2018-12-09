@@ -84,7 +84,9 @@ class ChatPanel extends Component {
 
     return (
       <div className = {this.props.classes.root}>
-        <div className="conversation-view">{chat}</div>
+        <div className="conversation-view">
+          <div>{chat}</div>
+        </div>
         <div className="message-box">
           <form onSubmit={this.handleSubmit}>
             <input

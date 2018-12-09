@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Pusher from 'pusher-js';
+import Tooltip from '@material-ui/core/Tooltip';
+import Fab from '@material-ui/core/Fab';
+import MicIcon from '@material-ui/icons/Mic';
 import { withStyles, createStyles } from '@material-ui/core/styles';
 import './ChatPanel.css';
 
@@ -88,6 +91,11 @@ class ChatPanel extends Component {
           <div>{chat}</div>
         </div>
         <div className="message-box">
+          <Tooltip title="Add" aria-label="Add">
+            <Fab>
+              <MicIcon />
+            </Fab>
+          </Tooltip>
           <form onSubmit={this.handleSubmit}>
             <input
               value={this.state.userMessage}

@@ -92,12 +92,6 @@ class ChatPanel extends Component {
           <div>{chat}</div>
         </div>
         <div className="message-box">
-          <Tooltip title="Add" aria-label="Add">
-            <Fab>
-              <MicIcon />
-            </Fab>
-          </Tooltip>
-
           <form onSubmit={this.handleSubmit}>
             <input
               value={this.state.userMessage}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { ChatPage } from './views';
+import { ChatPage, JournalPage } from './views';
 import { NavBar } from './components';
 import './App.css';
 
@@ -25,6 +25,7 @@ class App extends Component {
           <NavBar/>
           <div className="container">
             <Route exact path="/" component={ChatPage} />
+            <Route path="/journal" component={JournalPage} />
           </div>
         </MuiThemeProvider>
       </Router>

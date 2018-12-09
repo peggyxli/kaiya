@@ -6,11 +6,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import AdbIcon from '@material-ui/icons/Adb';
 
-const styles = {
-  root: {
-    flexGrow: 1,
+const styles = theme => ({
+  primaryLight: {
+    backgroundColor: theme.palette.primary.light
   },
   grow: {
     flexGrow: 1,
@@ -19,21 +19,24 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
-};
+});
 
 function NavBar(props) {
   const { classes } = props;
   return (
     <div className={classes.root}>
-      <AppBar position="fixed">
+      <AppBar position="static" className={classes.primaryLight}>
         <Toolbar>
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
+            <AdbIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Kaiya
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit">Journal</Button>
+          <Button color="inherit">Trends</Button>
+          <Button color="inherit">Talk to Kaiya</Button>
+          <Button color="inherit">Settings</Button>
         </Toolbar>
       </AppBar>
     </div>

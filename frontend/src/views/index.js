@@ -1,3 +1,3 @@
-import Chat from './chat';
+import ChatPage from './chat-page';
 
-export { Chat };
+export { ChatPage };

@@ -88,7 +88,7 @@ class ChatPanel extends Component {
 
     return (
       <div className = {this.props.classes.root}>
-        <div className="conversation-view">
+        <div className="conversation-viewer">
           <div>{chat}</div>
         </div>
         <div className="message-box">
@@ -102,12 +102,17 @@ class ChatPanel extends Component {
             <input
               value={this.state.userMessage}
               onInput={this.handleChange}
-              className="text-input"
+              className="conversation-textinput"
               type="text"
               autoFocus
               placeholder="Type your message and hit Enter to send"
             />
           </form>
+          <Tooltip title="Communicate by voice" aria-label="Communicate by voice">
+            <Fab>
+              <MicIcon />
+            </Fab>
+          </Tooltip>
         </div>
       </div>
     );

@@ -16,7 +16,7 @@ html, body {
   overflow: auto;
 }
 
-.conversation-view {
+.conversation-viewer {
   width: 100%;
   padding: 16px;
   display: flex;
@@ -26,16 +26,30 @@ html, body {
   justify-content: flex-end;
 }
 
-.message-box {
+.conversation-input {
   width: 100%;
-  padding: 20px 20px;
+  padding: 16px;
   border-top: 1px solid gray;
+  display: flex;
 }
 
-.text-input {
+.conversation-textform {
+  display: flex;
+  flex: 1 1;
+  margin-right: 12px;
+}
+
+.conversation-textinput {
   width: 100%;
   border: none;
-  padding: 5px;
+  padding: 16px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  border-radius: 25px;
+}
+
+.conversation-textinput:hover, .conversation-textinput:focus {
+  box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+  outline: none;
 }
 
 .chat-bubble {

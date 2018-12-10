@@ -91,8 +91,8 @@ class ChatPanel extends Component {
         <div className="conversation-viewer">
           <div>{chat}</div>
         </div>
-        <div className="message-box">
-          <form onSubmit={this.handleSubmit}>
+        <div className="conversation-input">
+          <form className="conversation-textform" onSubmit={this.handleSubmit}>
             <input
               value={this.state.userMessage}
               onInput={this.handleChange}

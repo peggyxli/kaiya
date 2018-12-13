@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -19,6 +20,10 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20,
   },
+  link: {
+    textDecoration: 'none',
+    color: theme.palette.secondary.main
+  }
 });
 
 function NavBar(props) {
@@ -33,9 +38,16 @@ function NavBar(props) {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Kaiya
           </Typography>
-          <Button color="inherit">Journal</Button>
+          <Link to="/login" className={classes.link}>
+            <Button color="inherit">Login</Button>
+          </Link>
+          <Link to="/journal" className={classes.link}>
+            <Button color="inherit">Journal</Button>
+          </Link>
           <Button color="inherit">Trends</Button>
-          <Button color="inherit">Talk to Kaiya</Button>
+          <Link to="/" className={classes.link}>
+            <Button color="inherit">Talk to Kaiya</Button>
+          </Link>
           <Button color="inherit">Settings</Button>
         </Toolbar>
       </AppBar>

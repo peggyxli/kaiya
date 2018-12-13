@@ -69,6 +69,10 @@ class ChatPanel extends Component {
       }),
     });
 
+    console.log( JSON.stringify({
+      message: this.state.userMessage,
+    }));
+
     this.setState({ userMessage: '' });
   };
 

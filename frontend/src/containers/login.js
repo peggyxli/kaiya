@@ -68,8 +68,8 @@ class LoginPage extends Component {
   constructor() {
     super();
     this.state = {
-      username: '',
-      password: '',
+      username: 'peggy',
+      password: '123',
       error: '',
     };
 

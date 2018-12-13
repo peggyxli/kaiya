@@ -102,6 +102,29 @@ startListening = () => {
 stopListening = () => {
   this.listener.stopListening();
   this.setState({ listening: false });
+
+  const msg = {
+    text: this.state.finalisedText.join('. '),
+    user: 'human',
+  };
+
+  this.setState({
+    conversation: [...this.state.conversation, msg],
+  });
+
+  fetch('http://localhost:5000/api/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      message: this.state.finalisedText.join('. '),
+    }),
+  });
+
+  console.log( JSON.stringify({
+    message: this.state.finalisedText,
+  }));
+
+  this.setState({ finalisedText: [] });
 };
 //end for speech
 
@@ -156,6 +179,14 @@ stopListening = () => {
     const { classes } = this.props;
 
     let content;
+    let micFunc;
+
+    let micButton = (
+      <Fab> 
+        <MicIcon />    
+      </Fab>
+    );
+
     if (error) {
       content = (
         <Paper className={classes.paper}>
@@ -164,6 +195,8 @@ stopListening = () => {
           </Typography>
         </Paper>
       );
+
+      
     } else {
       let buttonForListening;
 
@@ -172,6 +205,11 @@ stopListening = () => {
           <Button color="primary" onClick={() => this.stopListening()}>
             Stop Listening
           </Button>
+        );
+        micButton = (
+          <Fab color="secondary" onClick={() => this.stopListening()}> 
+            <MicIcon />    
+          </Fab>
         );
       } else {
         buttonForListening = (
@@ -183,55 +221,15 @@ stopListening = () => {
             Start Listening
           </Button>
         );
+        micButton = (
+          <Fab onClick={() => this.startListening()}> 
+            <MicIcon />    
+          </Fab>
+        );
       }
-      content = (
-        <Grid container spacing={16}>
-          <Grid item xs={12} sm={5}>
-            <Paper className={this.props.classes.paper}>
-              <Typography variant="overline" gutterBottom>
-                Status: {listening ? 'listening...' : 'finished listening'}
-              </Typography>
-              {buttonForListening}
-            </Paper>
-          </Grid>
-          <Grid item xs={12} sm={7}>
-            <Paper className={this.props.classes.paper}>
-              <Typography variant="overline" gutterBottom>
-                Current utterances
-              </Typography>
-              <Typography variant="body1" gutterBottom>
-                {interimText}
-              </Typography>
-            </Paper>
-          </Grid>
-          <Grid xs={12}>
-            <Paper className={classes.paper}>
-              <Table className={classes.table}>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Finalised Text</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {finalisedText.map((str, index) => {
-                    return (
-                      <TableRow key={index}>
-                        <TableCell component="th" scope="row">
-                          {str}
-                        </TableCell>
-                      </TableRow>
-                    );
-                  })}
-                </TableBody>
-              </Table>
-            </Paper>
-          </Grid>
-        </Grid>
-      );
     }
     //end
-    //// id='microphone-btn' onClick={this.toggleListen}/> 
-
+    
     return (
       <div className = {this.props.classes.root}>
         <div className="conversation-viewer">
@@ -249,15 +247,29 @@ stopListening = () => {
             />
           </form>
           <Tooltip title="Communicate by voice" aria-label="Communicate by voice">
-            <Fab>
-              <MicIcon />
-              
-            </Fab>
+            {micButton}
           </Tooltip>
         </div>
 
         <Grid container>
-              {content}
+          <Table className={classes.table}>
+            <TableHead>
+              <TableRow>
+                <TableCell>Finalized Text</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {finalisedText.map((str, index) => {
+                return (
+                  <TableRow key={index}>
+                    <TableCell component="th" scope="row">
+                      {str}
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
         </Grid>
       </div>
 
@@ -266,8 +278,6 @@ stopListening = () => {
     );    
   }
 }
-
-
 ChatPanel.propTypes = {
   classes: PropTypes.object.isRequired,
 };

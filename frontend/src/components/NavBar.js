@@ -38,9 +38,6 @@ function NavBar(props) {
           <Typography variant="h6" color="inherit" className={classes.grow}>
             Kaiya
           </Typography>
-          <Link to="/login" className={classes.link}>
-            <Button color="inherit">Login</Button>
-          </Link>
           <Link to="/journal" className={classes.link}>
             <Button color="inherit">Journal</Button>
           </Link>

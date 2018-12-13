@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import { ChatPage, JournalPage } from './views';
+import { ChatPage, JournalPage, LoginPage } from './views';
 import { NavBar } from './components';
-import LoginPage from './containers/login';
 import './App.css';
 
+
+
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isLoggedIn: false
+    };
+  }
+
+  logMeIn = () => {
+    this.setState({isLoggedIn:true});
+    console.log(this.state.isLoggedIn);
+  }
+
   render() {
     const theme = createMuiTheme({
       palette: {
@@ -20,19 +33,28 @@ class App extends Component {
       },
     });
 
-    return (
-      <Router>
+    if (this.state.isLoggedIn) {
+      return (
+        <Router>
+          <MuiThemeProvider theme={theme}>
+            <NavBar/>
+            <div className="container">
+              <Route exact path="/" component={ChatPage} />
+              <Route path="/journal" component={JournalPage} />
+            </div>
+          </MuiThemeProvider>
+        </Router>
+      );
+    } else {
+      return (
         <MuiThemeProvider theme={theme}>
-          <NavBar/>
-          <div className="container">
-            <Route exact path="/" component={ChatPage} />
-            <Route path="/journal" component={JournalPage} />
-            <Route path="/login" component={LoginPage} />
-          </div>
+          <LoginPage logMeIn={this.logMeIn}/>
         </MuiThemeProvider>
-      </Router>
-    );
+      );
+    }
   }
 }
+
+
 
 export default App;

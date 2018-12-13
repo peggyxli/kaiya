@@ -123,13 +123,17 @@ stopListening = () => {
       conversation: [...this.state.conversation, msg],
     });
 
-    fetch('http://localhost:5000/chat', {
+    fetch('http://localhost:5000/api/chat', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         message: this.state.userMessage,
       }),
     });
+
+    console.log( JSON.stringify({
+      message: this.state.userMessage,
+    }));
 
     this.setState({ userMessage: '' });
   };

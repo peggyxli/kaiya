@@ -11,25 +11,40 @@ const styles = theme => createStyles({
 });
 
 class JournalPage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      prevMessages: []
+    }
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:5000/api/chat', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    }).then(response => response.json())
+    .then(data => {
+      this.setState({prevMessages: data.posts});
+    });
+  }
+
   render() {
+    const ChatBubble = (text) => {
+      return (
+        <div>
+          <span className="chat-content">{text}</span>
+        </div>
+      );
+    };
+
+    const chat = this.state.prevMessages.map((e, index) =>
+      ChatBubble(e.post)
+    );
+
     return (
       <div className={this.props.classes.root}>
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-              Edit <code>src/App.js</code> and save to reload.
-            </p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learn React
-            </a>
-          </header>
-        </div>
+
+          {chat}
       </div>
     );
   }

@@ -5,6 +5,10 @@ module.exports = (sequelize, DataTypes) => {
 
     post: DataTypes.TEXT
 
+
+
+
+
   });
 
   messages.associate = (models) => {

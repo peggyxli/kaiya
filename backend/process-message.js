@@ -5,7 +5,7 @@ const Pusher = require('pusher');
 const projectId = 'kaiya-2c5a0'; //https://dialogflow.com/docs/agents#settings
 const sessionId = '123456';
 const languageCode = 'en-US';
-
+const models = require('./models');
 const config = {
   credentials: {
     private_key: process.env.DIALOGFLOW_PRIVATE_KEY,
@@ -41,10 +41,17 @@ const processMessage = message => {
     .then(responses => {
       const result = responses[0].queryResult;
       console.log(result.fulfillmentText);
+      const message = result.fulfillmentText;
+      models.messages.create({
+        post:message        
+      })
+
       return pusher.trigger('bot', 'bot-response', {
         message: result.fulfillmentText,
       });
     })
+
+
     .catch(err => {
       console.error('ERROR:', err);
     });

@@ -5,6 +5,8 @@ import { ChatPage, JournalPage, LoginPage } from './views';
 import { NavBar } from './components';
 import './App.css';
 
+
+
 class App extends Component {
   constructor() {
     super();
@@ -52,5 +54,7 @@ class App extends Component {
     }
   }
 }
+
+
 
 export default App;

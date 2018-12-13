@@ -5,6 +5,8 @@ import { ChatPage } from './views';
 import { NavBar } from './components';
 import './App.css';
 
+
+
 class App extends Component {
   render() {
     const theme = createMuiTheme({
@@ -31,5 +33,7 @@ class App extends Component {
     );
   }
 }
+
+
 
 export default App;

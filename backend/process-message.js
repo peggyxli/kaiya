@@ -40,6 +40,7 @@ const processMessage = message => {
     .detectIntent(request)
     .then(responses => {
       const result = responses[0].queryResult;
+      console.log(result.fulfillmentText);
       return pusher.trigger('bot', 'bot-response', {
         message: result.fulfillmentText,
       });

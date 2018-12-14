@@ -16,9 +16,7 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  Grid,
-  AppBar,
-  Toolbar
+  Grid
 } from '@material-ui/core';
 
 const styles = theme => createStyles({
@@ -61,7 +59,6 @@ class ChatPanel extends Component {
       });
     });
 
-    //for speech
     const onAnythingSaid = text => {
       this.setState({ interimText: text });
     };
@@ -83,50 +80,47 @@ class ChatPanel extends Component {
       this.listener = new SpeechToText(onFinalised, onEndEvent, onAnythingSaid);
     } catch (error) {
       this.setState({ error: error.message });
-      //for speech ends
     }
   }
 
 
-//for speech
-startListening = () => {
-  try {
-    this.listener.startListening();
-    this.setState({ listening: true });
-  } catch (err) {
-    console.log('yoyoy');
-    console.log(err);
-  }
-};
-
-stopListening = () => {
-  this.listener.stopListening();
-  this.setState({ listening: false });
-
-  const msg = {
-    text: this.state.finalisedText.join('. '),
-    user: 'human',
+  startListening = () => {
+    try {
+      this.listener.startListening();
+      this.setState({ listening: true });
+    } catch (err) {
+      console.log('yoyoy');
+      console.log(err);
+    }
   };
 
-  this.setState({
-    conversation: [...this.state.conversation, msg],
-  });
+  stopListening = () => {
+    this.listener.stopListening();
+    this.setState({ listening: false });
 
-  fetch('http://localhost:5000/api/chat', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      message: this.state.finalisedText.join('. '),
-    }),
-  });
+    const msg = {
+      text: this.state.finalisedText.join('. '),
+      user: 'human',
+    };
 
-  console.log( JSON.stringify({
-    message: this.state.finalisedText,
-  }));
+    this.setState({
+      conversation: [...this.state.conversation, msg],
+    });
 
-  this.setState({ finalisedText: [] });
-};
-//end for speech
+    fetch('http://localhost:5000/api/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: this.state.finalisedText.join('. '),
+      }),
+    });
+
+    console.log( JSON.stringify({
+      message: this.state.finalisedText,
+    }));
+
+    this.setState({ finalisedText: [] });
+  };
 
 
   handleChange = event => {
@@ -174,7 +168,7 @@ stopListening = () => {
       ChatBubble(e.text, index, e.user)
     );
 
-    //for speech
+   
     const { error, interimText, finalisedText, listening } = this.state;
     const { classes } = this.props;
 
@@ -195,8 +189,6 @@ stopListening = () => {
           </Typography>
         </Paper>
       );
-
-      
     } else {
       let buttonForListening;
 
@@ -228,7 +220,6 @@ stopListening = () => {
         );
       }
     }
-    //end
     
     return (
       <div className = {this.props.classes.root}>
@@ -250,7 +241,6 @@ stopListening = () => {
             {micButton}
           </Tooltip>
         </div>
-
         <Grid container>
           <Table className={classes.table}>
             <TableHead>
@@ -272,14 +262,10 @@ stopListening = () => {
           </Table>
         </Grid>
       </div>
-
-      //for speech
-      
     );    
   }
 }
 ChatPanel.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
 export default withStyles(styles)(ChatPanel);
